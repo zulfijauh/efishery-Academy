@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "e95848e9-eadd-4fef-bc68-5f0ba4e169da",
+		"name": "HOW TO ORDER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19703928"
+	},
+	"item": [
+		{
+			"name": "Step 1: Create empty transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\" : 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/post/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"transaction"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Input only users_id",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"transaction"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:54:46 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "237"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"Transaction created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"Cart\": null,\n        \"total_product\": 0,\n        \"subtotal\": 0,\n        \"address\": \"\",\n        \"created_at\": \"0001-01-01T00:00:00Z\",\n        \"time_limit\": \"0001-01-01T00:00:00Z\",\n        \"proof\": \"\",\n        \"status\": \"\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Step 2: Add items to cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"transactions_id\": 1,\n\"products_id\": 1,\n\"quantity\" : 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/post/cart",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"cart"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add item 1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"transactions_id\": 1,\n\"products_id\": 1,\n\"quantity\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"cart"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:58:45 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "182"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"Cart created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"transactions_id\": 1,\n        \"products_id\": 1,\n        \"nama_products\": \"Benih Lele\",\n        \"harga_products\": 50000,\n        \"quantity\": 1,\n        \"total\": 50000\n    }\n}"
+				},
+				{
+					"name": "Add item 2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"transactions_id\": 1,\n\"products_id\": 2,\n\"quantity\" : 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/cart",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"cart"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:59:19 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "192"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"Cart created successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"transactions_id\": 1,\n        \"products_id\": 2,\n        \"nama_products\": \"Pakan Lele Cap Kapak\",\n        \"harga_products\": 25000,\n        \"quantity\": 2,\n        \"total\": 50000\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Step 3: Update transactions",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/put/transaction/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"put",
+						"transaction",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Details automaticly updated",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/put/transaction/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"put",
+								"transaction",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 03:05:02 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "601"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"Transaction updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"Cart\": [\n            {\n                \"id\": 1,\n                \"transactions_id\": 1,\n                \"products_id\": 1,\n                \"nama_products\": \"Benih Lele\",\n                \"harga_products\": 50000,\n                \"quantity\": 1,\n                \"total\": 50000\n            },\n            {\n                \"id\": 2,\n                \"transactions_id\": 1,\n                \"products_id\": 2,\n                \"nama_products\": \"Pakan Lele Cap Kapak\",\n                \"harga_products\": 25000,\n                \"quantity\": 3,\n                \"total\": 75000\n            }\n        ],\n        \"total_product\": 4,\n        \"subtotal\": 125000,\n        \"address\": \"\",\n        \"Created\": {\n            \"Time\": \"2022-10-10T10:04:53.345984+07:00\",\n            \"Valid\": true\n        },\n        \"Limit\": {\n            \"Time\": \"2022-10-10T16:04:53.345984+07:00\",\n            \"Valid\": true\n        },\n        \"Proof\": {\n            \"String\": \"\",\n            \"Valid\": false\n        },\n        \"status\": \"waiting for payment\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Step 4: Add payment proof",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"proof\":{\n        \"string\":\"proof.jpg\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/put/transaction/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"put",
+						"transaction",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Status automaticly updated",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"proof\":{\n        \"string\":\"proof.jpg\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/put/transaction/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"put",
+								"transaction",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 03:08:04 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "598"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"Transaction updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"Cart\": [\n            {\n                \"id\": 1,\n                \"transactions_id\": 1,\n                \"products_id\": 1,\n                \"nama_products\": \"Benih Lele\",\n                \"harga_products\": 50000,\n                \"quantity\": 1,\n                \"total\": 50000\n            },\n            {\n                \"id\": 2,\n                \"transactions_id\": 1,\n                \"products_id\": 2,\n                \"nama_products\": \"Pakan Lele Cap Kapak\",\n                \"harga_products\": 25000,\n                \"quantity\": 3,\n                \"total\": 75000\n            }\n        ],\n        \"total_product\": 4,\n        \"subtotal\": 125000,\n        \"address\": \"\",\n        \"Created\": {\n            \"Time\": \"2022-10-10T10:04:53.345984+07:00\",\n            \"Valid\": true\n        },\n        \"Limit\": {\n            \"Time\": \"2022-10-10T16:04:53.345984+07:00\",\n            \"Valid\": true\n        },\n        \"Proof\": {\n            \"String\": \"proof.jpg\",\n            \"Valid\": true\n        },\n        \"status\": \"accepted\"\n    }\n}"
+				}
+			]
+		}
+	]
+}

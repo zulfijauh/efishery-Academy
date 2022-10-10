@@ -112,7 +112,7 @@ func (handler ProductHandler) GetProductByPrice(c echo.Context) error {
 }
 
 func (handler ProductHandler) UpdateProduct(c echo.Context) error {
-	req := entity.CreateProductRequest{}
+	req := entity.UpdateProductRequest{}
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, entity.ErrorResponse{
 			Code:    http.StatusBadRequest,

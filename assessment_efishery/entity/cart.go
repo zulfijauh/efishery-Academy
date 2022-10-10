@@ -11,7 +11,7 @@ type Cart struct {
 }
 
 type CreateCartRequest struct {
-	TransactionsID int    `json:"transactions_id" gorm:"primary_key"`
+	TransactionsID int    `json:"transactions_id"`
 	ProductsID     int    `json:"products_id" `
 	Products       string `json:"nama_products"`
 	Harga          int    `json:"harga_products"`

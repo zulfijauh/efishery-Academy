@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"assessment_efishery/config"
 	"assessment_efishery/entity"
 	"assessment_efishery/repository"
 
@@ -9,9 +10,9 @@ import (
 
 // USERS
 type IUserUsecase interface {
-	CreateUser(user entity.Users) (entity.Users, error)
-	GetAllUser() ([]entity.Users, error)
-	GetUserById(id int) (entity.Users, error)
+	CreateUser(user entity.CreateUserRequest) (entity.Users, error)
+	GetAllUser() ([]entity.UserResponse, error)
+	GetUserById(id int) (entity.DetailedUserResponse, error)
 	UpdateUser(UserRequest entity.UpdateUserRequest) (entity.UserResponse, error)
 	DeleteUser(id int) error
 }
@@ -24,7 +25,7 @@ func NewUserUsecase(userRepository repository.IUsersRepository) *UserUsecase {
 	return &UserUsecase{userRepository}
 }
 
-func (useCase UserUsecase) CreateUser(user entity.Users) (entity.Users, error) {
+func (useCase UserUsecase) CreateUser(user entity.CreateUserRequest) (entity.UserResponse, error) {
 	u := entity.Users{
 		Nama:         user.Nama,
 		Gender:       user.Gender,
@@ -34,9 +35,10 @@ func (useCase UserUsecase) CreateUser(user entity.Users) (entity.Users, error) {
 	}
 	users, err := useCase.UserRepository.Store(u)
 	if err != nil {
-		return entity.Users{}, err
+		return entity.UserResponse{}, err
 	}
-	userRes := entity.Users{
+	userRes := entity.UserResponse{
+		ID:     users.ID,
 		Nama:   users.Nama,
 		Gender: users.Gender,
 		Email:  users.Email,
@@ -45,14 +47,14 @@ func (useCase UserUsecase) CreateUser(user entity.Users) (entity.Users, error) {
 	return userRes, nil
 }
 
-func (useCase UserUsecase) GetAllUser() ([]entity.Users, error) {
+func (useCase UserUsecase) GetAllUser() ([]entity.UserResponse, error) {
 	users, err := useCase.UserRepository.FindAll()
 	if err != nil {
 		return nil, err
 	}
-	userRes := []entity.Users{}
+	userRes := []entity.UserResponse{}
 	for _, user := range users {
-		appendUser := entity.Users{
+		appendUser := entity.UserResponse{
 			ID:     user.ID,
 			Nama:   user.Nama,
 			Gender: user.Gender,
@@ -64,34 +66,43 @@ func (useCase UserUsecase) GetAllUser() ([]entity.Users, error) {
 	return userRes, nil
 }
 
-func (useCase UserUsecase) GetUserById(id int) (entity.Users, error) {
+func (useCase UserUsecase) GetUserById(id int) (entity.DetailedUserResponse, error) {
 	users, err := useCase.UserRepository.FindByID(id)
 	if err != nil {
-		return entity.Users{}, err
+		return entity.DetailedUserResponse{}, err
 	}
-	userRes := entity.Users{
-		ID:     users.ID,
-		Nama:   users.Nama,
-		Gender: users.Gender,
-		Email:  users.Email,
-		Phone:  users.Phone,
+	transactionRepository := repository.NewTransactionRepository(config.DB)
+	transactionUsecase := NewTransactionUsecase(transactionRepository)
+	transaction, _ := transactionUsecase.TransactiontoUser(users.ID)
+	userRes := entity.DetailedUserResponse{
+		Nama:         users.Nama,
+		Gender:       users.Gender,
+		Email:        users.Email,
+		Phone:        users.Phone,
+		Transactions: transaction,
 	}
 	return userRes, nil
 }
 
-func (useCase UserUsecase) UpdateUser(userRequest entity.UpdateUserRequest, id int) (entity.UserResponse, error) {
+func (useCase UserUsecase) UpdateUser(userRequest entity.UpdateUserRequest, id int) (entity.DetailedUserResponse, error) {
 	users, err := useCase.UserRepository.FindByID(id)
 	if err != nil {
-		return entity.UserResponse{}, err
+		return entity.DetailedUserResponse{}, err
 	}
+	// Add transaction(s) related to customers
+	transactionRepository := repository.NewTransactionRepository(config.DB)
+	transactionUsecase := NewTransactionUsecase(transactionRepository)
+	transaction, _ := transactionUsecase.TransactiontoUser(users.ID)
+
 	users.Nama = userRequest.Nama
 	users.Gender = userRequest.Gender
 	users.Email = userRequest.Email
 	users.Phone = userRequest.Phone
+	users.Transactions = transaction
 
 	copier.CopyWithOption(&users, &userRequest, copier.Option{IgnoreEmpty: true})
 	users, _ = useCase.UserRepository.Update(users)
-	userRes := entity.UserResponse{}
+	userRes := entity.DetailedUserResponse{}
 	copier.Copy(&userRes, &users)
 	return userRes, nil
 }

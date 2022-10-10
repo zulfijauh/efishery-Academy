@@ -75,7 +75,7 @@ func (handler CartHandler) GetCartByID(c echo.Context) error {
 }
 
 func (handler CartHandler) UpdateCart(c echo.Context) error {
-	req := entity.Cart{}
+	req := entity.UpdateCartRequest{}
 	if err := c.Bind(&req); err != nil {
 		return c.JSON(http.StatusBadRequest, entity.ErrorResponse{
 			Code:    http.StatusBadRequest,

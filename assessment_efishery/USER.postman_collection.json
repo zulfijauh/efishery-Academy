@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "260dca9e-8910-4d48-b287-12b9a94a2d5d",
+		"name": "USER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19703928"
+	},
+	"item": [
+		{
+			"name": "CREATE USERS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nama\" : \"Budi\",\n\"gender\" : \"L\",\n\"email\" : \"budi@gmail.com\",\n\"phone\" : \"08100112233\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/post/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CREATE USERS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"nama\" : \"Budi\",\n\"gender\" : \"L\",\n\"email\" : \"budi@gmail.com\",\n\"phone\" : \"08100112233\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 04:05:53 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "161"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"User created successfully\",\n    \"data\": {\n        \"id\": 0,\n        \"nama\": \"Budi\",\n        \"gender\": \"L\",\n        \"email\": \"budi@gmail.com\",\n        \"phone\": \"08100112233\",\n        \"Transactions\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET ALL USERS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/get/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET ALL USERS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 03:56:35 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "269"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nama\": \"Zulfi Jauharul Ikhsan\",\n            \"gender\": \"L\",\n            \"email\": \"zulfi.j.ikhsan@gmail.com\",\n            \"phone\": \"081221029169\",\n            \"Transactions\": null\n        },\n        {\n            \"id\": 3,\n            \"nama\": \"Budi\",\n            \"gender\": \"L\",\n            \"email\": \"budi@gmail.com\",\n            \"phone\": \"08100112233\",\n            \"Transactions\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET USERS BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET USERS BY ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:32:51 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "179"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"\",\n    \"data\": {\n        \"nama\": \"Zulfi Jauharul\",\n        \"gender\": \"L                             \",\n        \"email\": \"zulfi.j.ikhsan@gmail.com\",\n        \"phone\": \"081221029169\",\n        \"Transactions\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE USERS BY ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nama\" : \"Budi\",\n\"gender\" : \"L\",\n\"email\" : \"budi@gmail.com\",\n\"phone\" : \"08100112233\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/del/users/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"del",
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DELETE USERS BY ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"nama\" : \"Budi\",\n\"gender\" : \"L\",\n\"email\" : \"budi@gmail.com\",\n\"phone\" : \"08100112233\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/del/users/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"del",
+								"users",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 04:03:06 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"User deleted successfully\",\n    \"data\": null\n}"
+				}
+			]
+		}
+	]
+}

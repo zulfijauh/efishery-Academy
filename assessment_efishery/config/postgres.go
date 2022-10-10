@@ -13,7 +13,7 @@ var DB *gorm.DB
 var err error
 
 func Database() {
-	dsn := "host=localhost user=postgres password='' dbname=efishery_academy search_path=oms port=5432 sslmode=disable"
+	dsn := "host=localhost user=postgres password='' dbname=efishery_academy search_path=oms port=5432 TimeZone=Asia/Jakarta sslmode=disable"
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)

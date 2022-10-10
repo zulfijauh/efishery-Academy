@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "7d7ae66a-755b-4d3e-a121-d96dc36dc5bf",
+		"name": "PRODUCT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19703928"
+	},
+	"item": [
+		{
+			"name": "CREATE PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nama\" : \"pakan ikan hias\",\n\"foto\":  \"foto.jpg\",\n\"harga\": 6000,\n\"stok\" : 10,\n\"kategori\":  \"Pakan\",\n\"deskripsi\" : \"Pakan ikan hias yang membuat warna ikan makin glowing\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/post/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CREATE PRODUCT",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"nama\" : \"pakan ikan hias\",\n\"foto\":  \"foto.jpg\",\n\"harga\": 6000,\n\"stok\" : 10,\n\"kategori\":  \"Pakan\",\n\"deskripsi\" : \"Pakan ikan hias yang membuat warna ikan makin glowing\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"products"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 04:08:36 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"id\": 8,\n        \"nama\": \"pakan ikan hias\",\n        \"foto\": \"foto.jpg\",\n        \"harga\": 6000,\n        \"stok\": 10,\n        \"kategori\": \"Pakan\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET ALL PRODUCT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET ALL PRODUCT",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:34:50 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "704"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nama\": \"Benih Lele\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 50000,\n            \"stok\": 250,\n            \"kategori\": \"Benih\"\n        },\n        {\n            \"id\": 2,\n            \"nama\": \"Pakan Lele Cap Kapak\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 25000,\n            \"stok\": 493,\n            \"kategori\": \"Pakan\"\n        },\n        {\n            \"id\": 3,\n            \"nama\": \"Probiotik A\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 75000,\n            \"stok\": 138,\n            \"kategori\": \"Suplemen\"\n        },\n        {\n            \"id\": 4,\n            \"nama\": \"Probiotik B Nila\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 10000,\n            \"stok\": 181,\n            \"kategori\": \"Suplemen\"\n        },\n        {\n            \"id\": 5,\n            \"nama\": \"Pakan Nila\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 20000,\n            \"stok\": 317,\n            \"kategori\": \"Pakan\"\n        },\n        {\n            \"id\": 6,\n            \"nama\": \"Cupang\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 5000,\n            \"stok\": 30,\n            \"kategori\": \"Benih\"\n        },\n        {\n            \"id\": 8,\n            \"nama\": \"pakan ikan hias\",\n            \"foto\": \"foto.jpg\",\n            \"harga\": 6000,\n            \"stok\": 10,\n            \"kategori\": \"Pakan\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET ALL PRODUCT BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/products/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET ALL PRODUCT BY ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 04:10:18 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "255"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 202,\n    \"message\": \"Display product successfully\",\n    \"data\": {\n        \"id\": 5,\n        \"nama\": \"Pakan Nila\",\n        \"foto\": \"Gambar.jpg\",\n        \"harga\": 20000,\n        \"stok\": 317,\n        \"deskripsi\": \"bentuk pelet tenggelam, sangat cocok untuk ikan bawal, patin, nila, gurame dengan protein 15%. ukuran 2KG\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "FILTER PRODUCT BY CATEGOTRY",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/category/Pakan",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"category",
+						"Pakan"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FILTER PRODUCT BY CATEGOTRY",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/category/Pakan",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"category",
+								"Pakan"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Oct 2022 03:53:38 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "259"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 202,\n    \"message\": \"Display product successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"nama\": \"Pakan Lele Cap Kapak\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 25000,\n            \"stok\": 493,\n            \"kategori\": \"Pakan\"\n        },\n        {\n            \"id\": 5,\n            \"nama\": \"Pakan Nila\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 20000,\n            \"stok\": 317,\n            \"kategori\": \"Pakan\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "FILTER PRODUCT BY PRICE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/products/price/8000/30000",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"price",
+						"8000",
+						"30000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "FILTER PRODUCT BY PRICE",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/price/8000/30000",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"price",
+								"8000",
+								"30000"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 Oct 2022 06:37:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "361"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 202,\n    \"message\": \"Display product successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"nama\": \"Pakan Lele Cap Kapak\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 25000,\n            \"stok\": 493,\n            \"kategori\": \"Pakan\"\n        },\n        {\n            \"id\": 4,\n            \"nama\": \"Probiotik B Nila\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 10000,\n            \"stok\": 181,\n            \"kategori\": \"Suplemen\"\n        },\n        {\n            \"id\": 5,\n            \"nama\": \"Pakan Nila\",\n            \"foto\": \"Gambar.jpg\",\n            \"harga\": 20000,\n            \"stok\": 317,\n            \"kategori\": \"Pakan\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}

@@ -60,9 +60,9 @@ func (r CartRepository) Delete(id int) error {
 	return nil
 }
 
-func (r CartRepository) AllCartID(id int) ([]entity.Cart, error) {
+func (r CartRepository) AllCartID(transactions_id int) ([]entity.Cart, error) {
 	var cart []entity.Cart
-	if err := r.db.Debug().Find(&cart).Error; err != nil {
+	if err := r.db.Debug().Where("transactions_id = ?", transactions_id).Find(&cart).Error; err != nil {
 		return nil, err
 	}
 	return cart, nil

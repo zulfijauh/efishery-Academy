@@ -19,7 +19,7 @@ func NewTransactionHandler(transactionUsecase *usecase.TransactionUsecase) *Tran
 }
 
 func (handler TransactionHandler) CreateTransaction(c echo.Context) error {
-	req := entity.Transactions{}
+	req := entity.CreateTransactionsRequest{}
 	if err := c.Bind(&req); err != nil {
 		return err
 	}

@@ -38,11 +38,11 @@ type ProductResponse struct {
 }
 
 type DetailedProductResponse struct {
-	ID        int    `json:"id"`
 	Nama      string `json:"nama"`
 	Foto      string `json:"foto"`
 	Harga     int    `json:"harga"`
 	Stok      int    `json:"stok"`
+	Kategori  string `json:"kategori"`
 	Deskripsi string `json:"deskripsi"`
 }
 

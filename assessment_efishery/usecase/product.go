@@ -3,15 +3,19 @@ package usecase
 import (
 	"assessment_efishery/entity"
 	"assessment_efishery/repository"
+
+	"github.com/jinzhu/copier"
 )
 
 // PRODUCTS
 type IProductUsecase interface {
-	CreateProduct(product entity.CreateProductRequest) (entity.Products, error)
-	GetAllProduct() ([]entity.Products, error)
-	GetProductById(id int) (entity.Products, error)
-	UpdateProduct(ProductRequest entity.CreateProductRequest) (entity.Products, error)
+	CreateProduct(product entity.CreateProductRequest) (entity.ProductResponse, error)
+	GetAllProduct() ([]entity.ProductResponse, error)
+	GetProductById(id int) (entity.DetailedProductResponse, error)
+	UpdateProduct(productRequest entity.UpdateProductRequest) (entity.DetailedProductResponse, error)
 	DeleteProduct(id int) error
+	GetProductByCategory(kategori string) ([]entity.ProductResponse, error)
+	GetProductByPrice(priceMin int, priceMax int) ([]entity.ProductResponse, error)
 }
 
 type ProductUsecase struct {
@@ -92,7 +96,6 @@ func (useCase ProductUsecase) GetProductById(id int) (entity.DetailedProductResp
 		return entity.DetailedProductResponse{}, err
 	}
 	productRes := entity.DetailedProductResponse{
-		ID:        products.ID,
 		Nama:      products.Nama,
 		Foto:      products.Foto,
 		Harga:     products.Harga,
@@ -121,32 +124,22 @@ func (useCase ProductUsecase) GetProductByCategory(kategori string) ([]entity.Pr
 	return productRes, nil
 }
 
-func (useCase ProductUsecase) UpdateProduct(ProductRequest entity.CreateProductRequest, id int) (entity.Products, error) {
+func (useCase ProductUsecase) UpdateProduct(productRequest entity.UpdateProductRequest, id int) (entity.DetailedProductResponse, error) {
 	products, err := useCase.ProductRepository.FindByID(id)
 	if err != nil {
-		return entity.Products{}, err
+		return entity.DetailedProductResponse{}, err
 	}
-	updatedProduct := entity.Products{
-		ID:        products.ID,
-		Nama:      products.Nama,
-		Foto:      products.Foto,
-		Harga:     products.Harga,
-		Stok:      products.Stok,
-		Kategori:  products.Kategori,
-		Deskripsi: products.Deskripsi,
-	}
-	product, err := useCase.ProductRepository.Update(updatedProduct)
-	if err != nil {
-		return entity.Products{}, err
-	}
-	productRes := entity.Products{
-		Nama:      product.Nama,
-		Foto:      product.Foto,
-		Harga:     product.Harga,
-		Stok:      product.Stok,
-		Kategori:  product.Kategori,
-		Deskripsi: product.Deskripsi,
-	}
+	products.Nama = productRequest.Nama
+	products.Foto = productRequest.Foto
+	products.Harga = productRequest.Harga
+	products.Stok = productRequest.Stok
+	products.Kategori = productRequest.Kategori
+	products.Deskripsi = productRequest.Deskripsi
+
+	copier.CopyWithOption(&products, &productRequest, copier.Option{IgnoreEmpty: true})
+	products, _ = useCase.ProductRepository.Update(products)
+	productRes := entity.DetailedProductResponse{}
+	copier.Copy(&productRes, &products)
 	return productRes, nil
 }
 

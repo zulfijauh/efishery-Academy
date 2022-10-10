@@ -12,6 +12,7 @@ type ITransactionsRepository interface {
 	FindByID(id int) (entity.Transactions, error)
 	Update(transaction entity.Transactions) (entity.Transactions, error)
 	Delete(id int) error
+	TransactionsOfUsers(user_id int) ([]entity.Transactions, error)
 }
 
 type TransactionsRepository struct {
@@ -57,4 +58,12 @@ func (r TransactionsRepository) Delete(id int) error {
 		return err
 	}
 	return nil
+}
+
+func (r TransactionsRepository) TransactionsOfUsers(users_id int) ([]entity.Transactions, error) {
+	var transaction []entity.Transactions
+	if err := r.db.Debug().Where("users_id = ?", users_id).Find(&transaction).Error; err != nil {
+		return nil, err
+	}
+	return transaction, nil
 }

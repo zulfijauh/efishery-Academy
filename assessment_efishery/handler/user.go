@@ -28,7 +28,7 @@ func NewUserHandler(userUsecaes *usecase.UserUsecase) *UserHandler {
 // @Success 200 {object} map[string]interface{}
 // @Router /users [post]
 func (handler UserHandler) CreateUser(c echo.Context) error {
-	req := entity.Users{}
+	req := entity.CreateUserRequest{}
 	if err := c.Bind(&req); err != nil {
 		return err
 	}
@@ -72,13 +72,13 @@ func (handler UserHandler) GetUserByID(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, entity.ErrorResponse{
 			Code:    http.StatusBadRequest,
-			Message: "Create user failed",
+			Message: "Users not found",
 			Error:   err.Error(),
 		})
 	}
 	return c.JSON(http.StatusOK, entity.SuccessResponse{
 		Code:    http.StatusCreated,
-		Message: "User created successfully",
+		Message: "",
 		Data:    user,
 	})
 }
